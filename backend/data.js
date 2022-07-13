@@ -19,7 +19,7 @@ const data = {
             category: 'Dresses',
             image: '/images/p2.jpg',
             price: 220,
-            countInStock: 20,
+            countInStock: 0,
             brand: 'H&M',
             rating: 5.05,
             numReviews: 10,
