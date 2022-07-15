@@ -64,7 +64,7 @@ function ProductScreen() {
 
         contextDispatch({
             type: 'CART_ADD_ITEM',
-            payload: { ...product, quantity: 1 },
+            payload: { ...product, quantity: quantity },
         })
 
     }
