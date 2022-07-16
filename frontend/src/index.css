@@ -38,3 +38,6 @@ main {
 .img-large {
   max-width: 100%;
 }
+.img-tumbnail {
+  height: 80px;
+}
