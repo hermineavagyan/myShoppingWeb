@@ -18,7 +18,7 @@ export default function CartScreen() {
         }
         contextDispatch({
             type: 'CART_ADD_ITEM',
-            payload: { item, quantity },
+            payload: { ...item, quantity },
         });
     };
 
