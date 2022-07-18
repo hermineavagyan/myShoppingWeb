@@ -5,7 +5,17 @@ const initialState = {
     cart: {
         cartItems: [],
     }
+
 }
+// const initialState = {
+//     cart: {
+//         //cartItems: [],
+//         cartItems: localStorage.getItem('cartItems')
+//             ? JSON.parse(localStorage.getItem('cartItems'))
+//             : [],
+//     },
+// };
+
 function reducer(state, action) {
     switch (action.type) {
         case 'CART_ADD_ITEM':
@@ -17,6 +27,7 @@ function reducer(state, action) {
                 ? state.cart.cartItems.map((item) =>
                     item._id === itemAvailable._id ? newItem : item)
                 : [...state.cart.cartItems, newItem];
+            //localStorage.setItem('cartItems', JSON.stringify(cartItems));
             return {
                 ...state, cart: { ...state.cart, cartItems }
             }
