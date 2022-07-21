@@ -12,3 +12,5 @@ react-helmet-async
 # BACKEND
 
 express
+mongoose
+dotenv
