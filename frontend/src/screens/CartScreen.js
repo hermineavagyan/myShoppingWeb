@@ -1,14 +1,16 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { MyContext } from "../MyContext";
 import { Row, Col, ListGroup, Button, Card, } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import MessageBox from "../components/MesssageBox";
 import axios from "axios";
 
 export default function CartScreen() {
     const { state, dispatch: contextDispatch } = useContext(MyContext);
     const { cart: { cartItems }, } = state;
+    const navigate = useNavigate();
 
     const updateCartHandler = async (item, quantity) => {
         const { data } = await axios.get(`/api/products/${item._id}`);
@@ -24,6 +26,9 @@ export default function CartScreen() {
 
     const removeItemHandler = (item) => {
         contextDispatch({ type: 'CART_REMOVE_ITEM', payload: item })
+    };
+    const checkoutHandler = () => {
+        navigate('/signin?redirect = /shipping');
     }
 
     return (
@@ -99,6 +104,7 @@ export default function CartScreen() {
                                         <Button
                                             type='button'
                                             variant="primary"
+                                            onClick={checkoutHandler}
                                             disabled={cartItems.length === 0}
                                         >
                                             Proceed to checkout
