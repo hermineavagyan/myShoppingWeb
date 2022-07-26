@@ -1,7 +1,7 @@
 const data = {
     products: [
         {
-            _id: '1',
+
             name: 'ZARA dress',
             slug: 'zara-dress',
             category: 'Dresses',
@@ -15,7 +15,7 @@ const data = {
 
         },
         {
-            _id: '2',
+
             name: 'H&M dress',
             slug: 'h&m-dress',
             category: 'Dresses',
@@ -29,7 +29,7 @@ const data = {
 
         },
         {
-            _id: '3',
+
             name: 'BANANA RPUBLIC pants',
             slug: 'banana-republic-pants',
             category: 'Pants',
@@ -43,7 +43,7 @@ const data = {
 
         },
         {
-            _id: '4',
+
             name: 'Adidas shorts',
             slug: 'adidas-shorts',
             category: 'Shorts',

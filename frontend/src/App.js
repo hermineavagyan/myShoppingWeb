@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
 import SigninScreen from './screens/SigninScreen';
+//import data from '../../backend/data';
 
 function App() {
   const { state } = useContext(MyContext);
