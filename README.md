@@ -14,3 +14,5 @@ react-helmet-async
 express
 mongoose
 dotenv
+express-async-handler
+jsonwebtoken
