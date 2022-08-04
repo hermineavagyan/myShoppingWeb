@@ -17,7 +17,7 @@ function App() {
   const { cart, userInfo } = state;
 
 
-  const signouthandler = () => {
+  const signoutHandler = () => {
     contextDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
   }
@@ -56,11 +56,13 @@ function App() {
                     <NavDropdown.Divider />
                     <Link
                       className="dropdown-item" to="#signout"
-                      onClick={signouthandler}>
+                      onClick={signoutHandler}>
                     </Link>
                   </NavDropdown>
                 ) : (
-                  <Link className="nav-link" to="/signin">Sign in </Link>
+                  <Link className="nav-link" to="/signin">
+                    Sign in
+                  </Link>
                 )}
               </Nav>
             </Container>
