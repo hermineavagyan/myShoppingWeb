@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import Axios from 'axios';
 import { MyContext } from '../MyContext';
-import axios from "axios";
+
 
 
 export default function SigninScreen() {
@@ -22,13 +22,13 @@ export default function SigninScreen() {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const { userData } = await axios.post('/api/users/signin', {
+            const { data } = await Axios.post('/api/users/signin', {
                 email,
                 password
             });
-            contextDispatch({ type: 'USER_SIGNIN', payload: userData })
-            console.log(userData);
-            localStorage.setItem('userInfo', JSON.stringify(userData));
+            contextDispatch({ type: 'USER_SIGNIN', payload: data })
+            console.log(data);
+            localStorage.setItem('userInfo', JSON.stringify(data));
             console.log(userInfo)
             navigate(redirect || '/');
         } catch (error) {
@@ -61,7 +61,8 @@ export default function SigninScreen() {
                 </div>
                 <div className="mb-3">
                     New customer? {" "}
-                    <Link to={`/signup?redirect = ${redirect}`}>Create account</Link>
+                    <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
+                    {/* <Link to={`/signup ? redirect = ${redirect}`}>Create account</Link> */}
                 </div>
 
             </Form>

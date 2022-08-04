@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
 import SigninScreen from './screens/SigninScreen';
+import ShippingAddressScreen from './screens/ShippingAddressScreen';
 //import data from '../../backend/data';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const signoutHandler = () => {
     contextDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
   }
   return (
     <BrowserRouter>
@@ -31,7 +33,7 @@ function App() {
                 <Navbar.Brand>myShoppingWeb
                 </Navbar.Brand>
               </LinkContainer>
-              <Nav classname="me-auto">
+              <Nav className="me-auto">
                 <Link to="/cart" className="nav-link">
                   Cart
                   {
@@ -74,6 +76,7 @@ function App() {
               <Route path="/product/:slug" element={<ProductScreen />}></Route>
               <Route path="/cart" element={<CartScreen />}></Route>
               <Route path="/signin" element={<SigninScreen />}></Route>
+              <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
               <Route path="/" element={<HomeScreen />}></Route>
             </Routes>
           </Container>

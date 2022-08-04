@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { MyContext } from "../MyContext";
 import { Row, Col, ListGroup, Button, Card, } from 'react-bootstrap';
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MessageBox from "../components/MesssageBox";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ export default function CartScreen() {
         contextDispatch({ type: 'CART_REMOVE_ITEM', payload: item })
     };
     const checkoutHandler = () => {
-        navigate('/signin?redirect = /shipping');
+        navigate('/signin?redirect=/shipping');
     }
 
     return (
