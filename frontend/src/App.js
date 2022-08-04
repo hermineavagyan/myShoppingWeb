@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
 import SigninScreen from './screens/SigninScreen';
+import SignupScreen from './screens/SignupScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 //import data from '../../backend/data';
 
@@ -76,6 +77,7 @@ function App() {
               <Route path="/product/:slug" element={<ProductScreen />}></Route>
               <Route path="/cart" element={<CartScreen />}></Route>
               <Route path="/signin" element={<SigninScreen />}></Route>
+              <Route path="/signup" element={<SignupScreen />}></Route>
               <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
               <Route path="/" element={<HomeScreen />}></Route>
             </Routes>
