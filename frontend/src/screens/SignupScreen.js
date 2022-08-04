@@ -25,6 +25,7 @@ export default function SignupScreen() {
     const submitHandler = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
+            console.log('Passwords do not match');
             toast.error('Passwords do not match');
             return;
         }
@@ -37,10 +38,11 @@ export default function SignupScreen() {
             contextDispatch({ type: 'USER_SIGNIN', payload: data })
             console.log(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
-            console.log(userInfo)
+
             navigate(redirect || '/');
         } catch (error) {
-            alert("Invalid email or password")
+            toast.error("Passowrds do not mathc");
+            console.log("Passwords do not match")
         }
     }
     useEffect(() => {
