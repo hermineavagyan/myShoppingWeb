@@ -3,7 +3,7 @@ import CheckOutSteps from '../components/CheckoutSteps';
 import { Helmet } from "react-helmet-async";
 import { Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { MyContext } from '../MyContext';
 
 
