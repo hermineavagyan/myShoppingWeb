@@ -1,17 +1,37 @@
 import React from 'react';
 import CheckOutSteps from '../components/CheckoutSteps';
 import { Helmet } from "react-helmet-async";
-import { Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
+import { Row, Col, Card, Button, ListGroup, Toast } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { MyContext } from '../MyContext';
+import { getError } from '../utils'
+import { toast } from 'react-toastify'
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'CREATE_REQUEST':
+            return { ...state, loading: true };
+        case 'CREATE_SUCCESS':
+            return { ...state, loading: false };
+        case 'CREATE_FAIL':
+            return { ...state, loading: false };
+        default:
+            return state;
+    }
+
+}
 
 
 export default function PlaceOrderScreen() {
-
+    const navigate = useNavigate();
+    const [{ loading, error }, dispatch] = useReducer(reducer, {
+        loading: false,
+        error: ""
+    })
     const { state, dispatch: contextDispatch } = useContext(MyContext)
     const { cart, userInfo } = state
-    const navigate = useNavigate();
+
 
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
@@ -19,9 +39,16 @@ export default function PlaceOrderScreen() {
         cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
     cart.shippingPrice = cart.itemPrice > 100 ? round2(0) : round2(10);
     cart.taxPrice = round2(0.15 * cart.itemsPrice);
-    cart.totalPrice = cart.itemPrice + cart.shippingPrice + cart.taxPrice;
+    cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-    const placeOrderHandler = async () => { };
+    const placeOrderHandler = async () => {
+        try {
+
+        } catch (error) {
+            dispatch({ type: 'CREATE_FAIL' });
+            toast.error(getError(error));
+        }
+    };
 
     useEffect(() => {
         if (!cart.paymentMethod) {
