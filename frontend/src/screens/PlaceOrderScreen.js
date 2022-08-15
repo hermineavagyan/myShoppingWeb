@@ -1,12 +1,14 @@
 import React from 'react';
+import Axios from 'axios';
 import CheckOutSteps from '../components/CheckoutSteps';
 import { Helmet } from "react-helmet-async";
 import { Row, Col, Card, Button, ListGroup, Toast } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useReducer } from "react";
 import { MyContext } from '../MyContext';
-import { getError } from '../utils'
-import { toast } from 'react-toastify'
+import { getError } from '../utils';
+import { toast } from 'react-toastify';
+import LoadingBox from '../components/LoadingBox';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -21,13 +23,11 @@ const reducer = (state, action) => {
     }
 
 }
-
-
 export default function PlaceOrderScreen() {
     const navigate = useNavigate();
-    const [{ loading, error }, dispatch] = useReducer(reducer, {
+    const [{ loading, }, dispatch] = useReducer(reducer, {
         loading: false,
-        error: ""
+
     })
     const { state, dispatch: contextDispatch } = useContext(MyContext)
     const { cart, userInfo } = state
@@ -43,10 +43,30 @@ export default function PlaceOrderScreen() {
 
     const placeOrderHandler = async () => {
         try {
-
-        } catch (error) {
+            dispatch({ type: 'CREATE_REQUEST' });
+            const { data } = await Axios.post('/api/orders', {
+                orderItems: cart.orderItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                itemsPrice: cart.itemsPrice,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            }, {
+                headers: {
+                    authorization: `Bearer ${userInfo.token},`
+                },
+            }
+            );
+            contextDispatch({ type: 'CART_CLEAR' });
+            dispatch({ type: 'CREATE_SUCCESS' });
+            localStorage.removeItem('cartItems');
+            navigate(`/order/${data.order._id}`)
+        } catch (err) {
             dispatch({ type: 'CREATE_FAIL' });
-            toast.error(getError(error));
+
+            toast.error((getError(err)));
+            console.log(err);
         }
     };
 
@@ -101,7 +121,7 @@ export default function PlaceOrderScreen() {
                                                     <Link to={`/product/${item.slug}`}>{item.name}</Link>
                                                 </Col>
                                                 <Col md={3}><span>{item.quantity}</span></Col>
-                                                <Col md={3}>$ {item.price}</Col>
+                                                <Col md={3}>${item.price}</Col>
                                             </Row>
                                         </ListGroup.Item>
                                     ))}
@@ -146,6 +166,7 @@ export default function PlaceOrderScreen() {
                                             onClick={placeOrderHandler}
                                             disabled={cart.cartItems.length === 0}>Place Order</Button>
                                     </div>
+                                    {loading && <LoadingBox></LoadingBox>}
                                 </ListGroup.Item>
                             </ListGroup>
                         </Card.Body>
