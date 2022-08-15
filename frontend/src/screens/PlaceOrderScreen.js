@@ -54,7 +54,7 @@ export default function PlaceOrderScreen() {
                 totalPrice: cart.totalPrice,
             }, {
                 headers: {
-                    authorization: `Bearer ${userInfo.token},`
+                    authorization: `Bearer ${userInfo.token}`,
                 },
             }
             );
@@ -66,7 +66,6 @@ export default function PlaceOrderScreen() {
             dispatch({ type: 'CREATE_FAIL' });
 
             toast.error((getError(err)));
-            console.log(err);
         }
     };
 

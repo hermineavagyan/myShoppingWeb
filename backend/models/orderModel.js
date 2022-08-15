@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const oderSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
     {
         orderItems: [
             {
