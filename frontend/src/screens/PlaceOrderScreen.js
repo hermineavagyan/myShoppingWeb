@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 }
 export default function PlaceOrderScreen() {
     const navigate = useNavigate();
-    const [{ loading, }, dispatch] = useReducer(reducer, {
+    const [{ loading }, dispatch] = useReducer(reducer, {
         loading: false,
 
     })

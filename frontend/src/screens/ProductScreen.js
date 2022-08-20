@@ -5,7 +5,7 @@ import { useContext, useEffect, useReducer, } from 'react';
 import { Row, Col, ListGroup, Card, Badge, Button } from 'react-bootstrap';
 import Rating from "../components/Rating";
 import LoadingBox from "../components/LoadingBox";
-import MessageBox from "../components/MesssageBox";
+import MessageBox from "../components/MessageBox";
 import { getError } from "../helpers";
 import { MyContext } from "../MyContext";
 

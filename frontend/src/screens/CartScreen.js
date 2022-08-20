@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { MyContext } from "../MyContext";
 import { Row, Col, ListGroup, Button, Card, } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import MessageBox from "../components/MesssageBox";
+import MessageBox from "../components/MessageBox";
 import axios from "axios";
 
 export default function CartScreen() {

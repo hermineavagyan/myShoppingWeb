@@ -1,10 +1,9 @@
 
 import express from 'express';
 import { isAuth } from '../utils.js';
-
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
-import User from '../models/userModel.js';
+// import User from '../models/userModel.js';
 // import { generateToken } from '../utils.js';
 
 const orderRouter = express.Router();
@@ -24,7 +23,7 @@ const orderRouter = express.Router();
 //     res.status(201).send({ messsage: "New Order Created", order })
 // }))
 
-orderRouter.post(
+orderRouter.get(
     '/',
     isAuth,
     expressAsyncHandler(async (req, res) => {

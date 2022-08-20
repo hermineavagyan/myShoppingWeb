@@ -29,7 +29,7 @@ export default function SigninScreen() {
             contextDispatch({ type: 'USER_SIGNIN', payload: data })
             console.log(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
-            console.log(userInfo)
+            console.log(JSON.stringify(data))
             navigate(redirect || '/');
         } catch (error) {
             alert("Invalid email or password");
